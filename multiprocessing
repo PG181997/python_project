@@ -1,0 +1,19 @@
+import multiprocessing
+import time
+
+
+def dummy_func(name: str, sleep_time: int) -> None:
+
+    print(f"dummy_func started with name of {name}")
+    time.sleep(sleep_time)
+    print(f"dummy_func ended with name of {name}")
+
+
+if __name__ == "__main__":
+    p1 = multiprocessing.Process(target=dummy_func, args=("a", 5))
+    p2 = multiprocessing.Process(target=dummy_func, args=("b", 3))
+
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
