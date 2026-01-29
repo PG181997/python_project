@@ -1,0 +1,24 @@
+import threading  # I am importing thrading to make tasks run concorently
+import time  # importing timr to simulate and I/O operation
+
+
+def task(name: str, sleep_time: int) -> None:
+
+    print(f"The task named {name} has started")
+    time.sleep(sleep_time)  # simulating I/O operstion
+    print(f"The task named {name} has ended")
+
+
+t1 = threading.Thread(target=task, args=("T1", 7))  # creating thread one
+t2 = threading.Thread(target=task, args=("T2", 3))  # creating thread two
+
+t1.start()  # executing thread 1
+t2.start()  # executing thread 2
+
+t1.join()
+t2.join()
+
+
+print("File run is done")
+
+# while on thread waiting to compleate the I/O operation it can work one another thread
